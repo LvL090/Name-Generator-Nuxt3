@@ -1,3 +1,38 @@
+<script setup lang="ts">
+
+enum Gender {
+  GIRL = 'Girl',
+  UNISEX = 'Unisex',
+  BOY = 'Boy'
+}
+enum Popularity {
+  TRENDY = 'Trendy',
+  UNIQUE = 'Unique',
+ 
+}
+enum Length {
+  SHORT = 'Short',
+  ALL = 'All',
+  LONG = 'Long'
+}
+
+interface OptionsState {
+  gender: Gender;
+  popularity: Popularity;
+  length: Length;
+}
+const options = reactive<OptionsState>({
+  gender: Gender.GIRL,
+  length: Length.SHORT,
+  popularity: Popularity.TRENDY,
+
+});
+
+
+</script>
+
+
+
 
 <template>
   <div class="container">
@@ -7,31 +42,69 @@
      <div class="option-container">
        <h4>1) Escoge género</h4>
        <div class="option-buttons">
-         <button class="option option-left">Chica</button>
-         <button class="option">Unisex</button>
-         <button class="option option-right">Chico</button>
+         <button class="option option-left" 
+         :class="options.gender === Gender.GIRL && 'option-active'"
+          @click="options.gender = Gender.GIRL"
+          >
+         Chica
+         </button>
+         <button class="option" 
+         :class="options.gender === Gender.UNISEX && 'option-active'"
+          @click="options.gender = Gender.UNISEX"
+          >
+         Unisex
+         </button>
+         <button class="option option-right"
+          :class="options.gender === Gender.BOY && 'option-active'"
+          @click="options.gender = Gender.BOY"
+          >
+         Chico
+         </button>
        </div>
      </div>
      <div class="option-container">
        <h4>2) Escoge la popularidad del nombre</h4>
        <div class="option-buttons">
-         <button class="option option-left">Actual</button>
-         <button class="option option-right">Único</button>
+         <button class="option option-left"
+          :class="options.popularity === Popularity.TRENDY && 'option-active'"
+          @click="options.popularity = Popularity.TRENDY"
+          >
+         Actual
+         </button>
+         <button class="option option-right"
+          :class="options.popularity === Popularity.UNIQUE && 'option-active'"
+          @click="options.popularity = Popularity.UNIQUE"
+          >
+          Único
+          </button>
        </div>
      </div>
      <div class="option-container">
        <h4>3) Escoge la longitud del nombre</h4>
        <div class="option-buttons">
-         <button class="option option-left">Largo</button>
-         <button class="option">Indiferente</button>
-         <button class="option option-right">Corto</button>
+         <button class="option option-left" 
+         :class="options.length === Length.LONG && 'option-active'"
+         @click="options.length = Length.LONG"
+         >
+         Largo
+         </button>
+         <button class="option" 
+         :class="options.length === Length.ALL && 'option-active'"
+         @click="options.length = Length.ALL"
+         >
+         Indiferente
+         </button>
+         <button class="option option-right" 
+         :class="options.length === Length.SHORT && 'option-active'"
+         @click="options.length = Length.SHORT"
+         >
+         Corto
+         </button>
        </div>
      </div>
    </div>
  </div>
 </template>
-
-
 
 
 
@@ -75,19 +148,8 @@ h1 {
   border-radius: 0 1rem 1rem 0;
 }
 
-.primary {
+.option-active {
   background-color: rgb(249, 87, 89);
   color: white;
-  border-radius: 6.5rem;
-  border: none;
-  padding: 0.75rem 4rem;
-  font-size: 1rem;
-  margin-top: 1rem;
-  cursor: pointer;
-}
-.cards-container {
-  display: flex;
-  margin-top: 3rem;
-  flex-wrap: wrap;
 }
 </style>
