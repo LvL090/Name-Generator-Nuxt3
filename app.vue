@@ -1,20 +1,6 @@
 <script setup lang="ts">
+import {Gender,Popularity,Length, names} from "@/data"
 
-enum Gender {
-  GIRL = 'Girl',
-  UNISEX = 'Unisex',
-  BOY = 'Boy'
-}
-enum Popularity {
-  TRENDY = 'Trendy',
-  UNIQUE = 'Unique',
- 
-}
-enum Length {
-  SHORT = 'Short',
-  ALL = 'All',
-  LONG = 'Long'
-}
 
 interface OptionsState {
   gender: Gender;
@@ -23,10 +9,25 @@ interface OptionsState {
 }
 const options = reactive<OptionsState>({
   gender: Gender.GIRL,
-  length: Length.SHORT,
+  length: Length.ALL,
   popularity: Popularity.TRENDY,
 
 });
+
+const computeSelectedNames = () => {
+ const filteredNames = names
+ .filter((name) => name.gender === options.gender)
+ .filter((name) => name.popularity === options.popularity)
+ .filter ((name) => {
+  if(options.length === Length.ALL) return true
+  else return name.length === options.length
+ }) 
+
+  selectedNames.value = filteredNames.map(name => name.name)
+
+};
+
+const selectedNames = ref<string[]>([]);
 
 
 </script>
@@ -102,7 +103,9 @@ const options = reactive<OptionsState>({
          </button>
        </div>
      </div>
+     <button class="primary" @click="computeSelectedNames">Encontrar Nombre</button>
    </div>
+   {{ selectedNames }}
  </div>
 </template>
 
@@ -151,5 +154,16 @@ h1 {
 .option-active {
   background-color: rgb(249, 87, 89);
   color: white;
+}
+
+.primary {
+  background-color: rgb(87, 98, 249);
+  color: white;
+  border-radius: 6.5rem;
+  border:none;
+  padding: 0.75rem 4rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
 }
 </style>
