@@ -7,20 +7,20 @@ interface Name {
   }
   
   export enum Gender {
-    GIRL = "Girl",
-    BOY = "Boy",
+    GIRL = "Chica",
+    BOY = "Chico",
     UNISEX = "Unisex",
   }
   
   export enum Popularity {
-    TRENDY = "Trendy",
-    UNIQUE = "Unique",
+    TRENDY = "Actual",
+    UNIQUE = "Único",
   }
   
   export enum Length {
-    SHORT = "Short",
-    LONG = "Long",
-    ALL = "All",
+    SHORT = "Corto",
+    LONG = "Largo",
+    ALL = "Indiferente",
   }
   export const names: Name[] = [
     {

@@ -29,6 +29,23 @@ const computeSelectedNames = () => {
 
 const selectedNames = ref<string[]>([]);
 
+  const optionsArray = [
+    {
+      title: "1) Escoge género",
+      category: "gender",
+      buttons: [Gender.GIRL, Gender.UNISEX, Gender.BOY],
+    },
+    {
+      title: "2) Escoge la popularidad del nombre",
+      category: "popularity",
+      buttons: [Popularity.TRENDY, Popularity.UNIQUE],
+    },
+    {
+      title: "3) Escoge la longitud del nombre",
+      category: "length",
+      buttons: [Length.SHORT, Length.ALL, Length.LONG],
+    },
+  ];
 
 </script>
 
@@ -37,80 +54,22 @@ const selectedNames = ref<string[]>([]);
 
 <template>
   <div class="container">
-   <h1>Generador de Nombres</h1>
-   <p>Escoge tus opciones y haz click en el botón "Buscar Nombres"</p>
-   <div class="options-container">
-     <div class="option-container">
-       <h4>1) Escoge género</h4>
-       <div class="option-buttons">
-         <button class="option option-left" 
-         :class="options.gender === Gender.GIRL && 'option-active'"
-          @click="options.gender = Gender.GIRL"
-          >
-         Chica
-         </button>
-         <button class="option" 
-         :class="options.gender === Gender.UNISEX && 'option-active'"
-          @click="options.gender = Gender.UNISEX"
-          >
-         Unisex
-         </button>
-         <button class="option option-right"
-          :class="options.gender === Gender.BOY && 'option-active'"
-          @click="options.gender = Gender.BOY"
-          >
-         Chico
-         </button>
-       </div>
-     </div>
-     <div class="option-container">
-       <h4>2) Escoge la popularidad del nombre</h4>
-       <div class="option-buttons">
-         <button class="option option-left"
-          :class="options.popularity === Popularity.TRENDY && 'option-active'"
-          @click="options.popularity = Popularity.TRENDY"
-          >
-         Actual
-         </button>
-         <button class="option option-right"
-          :class="options.popularity === Popularity.UNIQUE && 'option-active'"
-          @click="options.popularity = Popularity.UNIQUE"
-          >
-          Único
-          </button>
-       </div>
-     </div>
-     <div class="option-container">
-       <h4>3) Escoge la longitud del nombre</h4>
-       <div class="option-buttons">
-         <button class="option option-left" 
-         :class="options.length === Length.LONG && 'option-active'"
-         @click="options.length = Length.LONG"
-         >
-         Largo
-         </button>
-         <button class="option" 
-         :class="options.length === Length.ALL && 'option-active'"
-         @click="options.length = Length.ALL"
-         >
-         Indiferente
-         </button>
-         <button class="option option-right" 
-         :class="options.length === Length.SHORT && 'option-active'"
-         @click="options.length = Length.SHORT"
-         >
-         Corto
-         </button>
-       </div>
-     </div>
-     <button class="primary" @click="computeSelectedNames">Encontrar Nombre</button>
-   </div>
-   <div class="cards-container">
-    <div v-for="name in selectedNames" :key="name" class="card">
-        <h4>{{ name }}</h4>
-        <p>x</p>
+    <h1>Generador de Nombres</h1>
+    <p>Escoge tus opciones y haz click en el botón "Buscar Nombres"</p>
+    <div class="options-container">
+        <Option v-for="option in optionsArray" 
+        :key="option.title" 
+        :option="option"
+        :options="options" 
+        />
+      <button class="primary" @click="computeSelectedNames">Encontrar Nombre</button>
     </div>
-   </div>
+    <div class="cards-container">
+      <div v-for="name in selectedNames" :key="name" class="card">
+          <h4>{{ name }}</h4>
+          <p>x</p>
+      </div>
+    </div>
  </div>
 </template>
 
