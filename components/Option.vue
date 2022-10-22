@@ -28,21 +28,11 @@ const computeButtonClasses = (value, index) => {
 };
 </script>
 
-<template>
-  <div class="option-container">
-    <h4>{{ option.title }}</h4>
-    <div class="option-buttons">
-      <button
-        v-for="(value, index) in option.buttons"
-        :key="value"
-        class="option"
-        :class="computeButtonClasses(value, index)"
-        @click="options[option.category] = value"
-      >
-        {{ value }}
-      </button>
-    </div>
-  </div>
+<template lang="pug">
+.option-container
+  h4 {{ option.title }}
+  .option-buttons
+    button.option(v-for="(value, index) in option.buttons" :key="value" :class="computeButtonClasses(value, index)" @click="options[option.category] = value") {{ value }}
 </template>
 
 <style scoped>
