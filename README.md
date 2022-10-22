@@ -10,8 +10,8 @@ Portal web para entender los principales cambios con Nuxt3 donde al seleccionar 
 
 ## La web en uso
 
-<img width="1487" alt="" src="![captura](https://user-images.githubusercontent.com/99020950/197337139-f1ca2b13-be35-4a03-9320-88b5b50abaed.png)
-">
+
+![captura](https://user-images.githubusercontent.com/99020950/197337390-5e66d936-e0c3-4503-a404-d4b8b833d0d6.png)
 
 
 ## Instalación
