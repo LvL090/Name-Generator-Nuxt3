@@ -12,11 +12,10 @@ const removeName = () => {
 };
 </script>
 
-<template>
-  <div class="card">
-    <h4>{{ name }}</h4>
-    <p @click="removeName">x</p>
-  </div>
+<template lang="pug">
+.card
+  h4 {{ name }}
+  p(@click="removeName") x
 </template>
 
 <style scoped>

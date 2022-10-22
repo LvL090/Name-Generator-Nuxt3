@@ -51,31 +51,15 @@ const optionsArray = [
 ];
 </script>
 
-<template>
-  <div class="container">
-    <h1>Generador de Nombres</h1>
-    <p>Escoge tus opciones y haz click en el botón "Buscar Nombres"</p>
-    <div class="options-container">
-      <Option
-        v-for="option in optionsArray"
-        :key="option.title"
-        :option="option"
-        :options="options"
-      />
-      <button class="primary" @click="computeSelectedNames">
-        Encontrar Nombre
-      </button>
-    </div>
-    <div class="cards-container">
-      <CardName
-        v-for="(name, index) in selectedNames"
-        :key="name"
-        :name="name"
-        @remove="() => removeName(index)"
-        :index="index"
-      />
-    </div>
-  </div>
+<template lang="pug">
+.container
+  h1 Generador de Nombres
+  p Escoge tus opciones y haz click en el botón "Buscar Nombres"
+  .options-container
+    Option(v-for="option in optionsArray" :key="option.title" :option="option" :options="options")
+    button.primary(@click="computeSelectedNames") Encontrar Nombre
+  .cards-container
+    CardName(v-for="(name, index) in selectedNames" :key="name" :name="name" @remove="() => removeName(index)" :index="index")
 </template>
 
 <style scoped>

@@ -8,6 +8,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@volar/vue-language-plugin-pug": "^1.0.8",
     "@webdiscus/pug-loader": "^2.9.4",
     "nuxt": "3.0.0-rc.12"
   }
