@@ -65,10 +65,7 @@ const selectedNames = ref<string[]>([]);
       <button class="primary" @click="computeSelectedNames">Encontrar Nombre</button>
     </div>
     <div class="cards-container">
-      <div v-for="name in selectedNames" :key="name" class="card">
-          <h4>{{ name }}</h4>
-          <p>x</p>
-      </div>
+      <CardName v-for="name in selectedNames" :key="name" :name="name" />
     </div>
  </div>
 </template>
@@ -96,30 +93,6 @@ h1 {
   position: relative;
 }
 
-.option{
-  background: white;
-  outline: 0.15rem solid rgb(249, 87, 89);
-  border: none;
-  padding: 0.75rem;
-  width: 12rem;
-  font-size: 1rem;
-  color: rgb(27,60,138);
-  cursor: pointer;
-  font-weight: 200rem;
-}
-
-.option-left{
-  border-radius: 1rem 0 0 1rem;
-}
-.option-right{
-  border-radius: 0 1rem 1rem 0;
-}
-
-.option-active {
-  background-color: rgb(249, 87, 89);
-  color: white;
-}
-
 .primary {
   background-color: rgb(87, 98, 249);
   color: white;
@@ -135,25 +108,5 @@ h1 {
   display: flex;
   margin-top: 3rem;
   flex-wrap: wrap;
-}
-
-.card{
-  background-color: rgb(27,60,138);
-  width: 28%;
-  color: white;
-  border-radius: 1rem;
-  padding: 0.1rem;
-  margin-right: 0.5rem;
-  margin-bottom: 1rem;
-  position: relative;
-}
-
-.card p {
-  position: absolute;
-  top: -20%;
-  left: 92.5%;
-  cursor: pointer;
-  color: rgba(255, 255, 255, 0,178);
-
 }
 </style>

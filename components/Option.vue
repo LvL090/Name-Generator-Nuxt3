@@ -6,7 +6,7 @@ interface OptionProps {
     option:{
         title: string;
         category: string;
-        buttons: Gender [] | Popularity[] | Length[];
+        buttons: Gender[] | Popularity[] | Length[];
     };
     options: {
         gender: Gender;
@@ -37,7 +37,8 @@ const props =defineProps<OptionProps>();
        <h4>{{ option.title }}</h4>
        <div class="option-buttons">
          <button 
-         v-for="(value, index) in option.buttons"
+         v-for="(value, index) in option.buttons" 
+         :key="value"
          class="option"
          :class="computeButtonClasses(value, index)"
           @click="options[option.category] = value"
@@ -49,7 +50,6 @@ const props =defineProps<OptionProps>();
 </template>
 
 <style scoped>
-
 
 .options-container {
   background-color: rgb(255, 238, 236);
@@ -84,5 +84,4 @@ const props =defineProps<OptionProps>();
   background-color: rgb(249, 87, 89);
   color: white;
 }
-
 </style>
